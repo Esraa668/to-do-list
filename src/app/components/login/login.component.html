@@ -1,0 +1,87 @@
+<section class="bg-main-light shadow w-75 mx-auto rounded-3  p-5 mt-5 text loginPage">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <img src="./assets/images/signin-image.jpg" alt="sign in photo" class="loginIMG">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 class="h2 text-main">Sign in:</h1>
+
+            <form [formGroup]="LoginGroup" (ngSubmit)="handle()">
+                <!-- Name  -->
+
+                <!--^ email -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="email"><i class="fa-solid fa-envelope"></i></label>
+                    <input type="email" class="form-control border border-top-0 border-end-0 border-start-0 mt-1"
+                        formControlName="email" id="email" placeholder="Your Email" />
+                </div>
+                <div class="alert alert-danger error p-1 m-1 w-100 mx-auto text-center " *ngIf="
+             LoginGroup.get('email')?.errors &&LoginGroup.get('email')?.touched
+            ">
+                    <p *ngIf="LoginGroup.get('email')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        email Required
+                    </p>
+
+                    <p *ngIf="LoginGroup.get('email')?.getError('email')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+
+                        invalid email
+                    </p>
+                </div>
+                <!-- * pass -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="password"><i class="fa-solid fa-lock"></i></label>
+                    <input type="password" class="form-control border border-top-0 border-end-0 border-start-0 mt-1 "
+                        formControlName="password" id="password" placeholder="Your Password..." />
+                </div>
+                <div class="alert alert-danger error p-1 m-1 w-100 mx-auto text-center " *ngIf="
+              LoginGroup.get('password')?.errors &&
+              LoginGroup.get('password')?.touched
+            ">
+                    <p *ngIf="LoginGroup.get('password')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        password Required
+                    </p>
+
+                    <p *ngIf="LoginGroup.get('password')?.getError('pattern')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+
+                        password must start with upperCase then from 6 to 10
+                    </p>
+                </div>
+
+
+                <div class="d-flex justify-content-center align-items-center flex-column m-2">
+                    <button class="btn btn-danger" [disabled]="LoginGroup.invalid">
+                        SIGN IN...
+
+                        <i class="fa fa-spinner fa-spin" *ngIf="load"></i>
+                    </button>
+
+                </div>
+                <p *ngIf="err" class="p-1 w-50 text-center mb-0 mx-auto alert alert-danger">
+                    {{err}}
+                </p>
+
+
+
+            </form>
+            <div class="social-login d-flex justify-content-center flex-column align-items-center mt-4">
+                <span class="social-label mb-3 fs-5">login with..</span>
+                <ul class="socials d-flex justify-content-evenly gap-3 list-unstyled">
+                    <li class=""><i class="fa-brands fa-facebook Icon"></i></li>
+                    <li><i class="fa-brands fa-twitter Icon"></i></li>
+                    <li><i class="fa-brands fa-google-plus-g Icon"></i></li>
+                </ul>
+                <p>Don't Have an account?
+                    <a class="text-info" routerLink="/register">Signup</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>

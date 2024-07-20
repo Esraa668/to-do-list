@@ -1,0 +1,133 @@
+<section class="bg-main-light shadow w-75 mx-auto rounded-3  p-4 mt-5 text register-section">
+    <h1 class="h2 text-main">Sign Up:</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="registerGroup " (ngSubmit)="handle()">
+                <!-- Name  -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="name">
+                        <i class="fa-solid fa-user fa-1"></i>
+
+                    </label>
+                    <input type="text" class="form-control border border-top-0 border-end-0 border-start-0 mt-1 "
+                        formControlName="name" id="name" placeholder="Your Name..." />
+                </div>
+                <div class="alert alert-danger error p-1 m-1  w-75 mx-auto text-center " *ngIf="
+             registerGroup.get('name')?.errors &&registerGroup.get('name')?.touched
+            ">
+                    <p *ngIf="registerGroup.get('name')?.getError('required')" class="mb-0 mt-1 ">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        Name Required
+                    </p>
+                    <p *ngIf="registerGroup.get('name')?.getError('minlength')" class="mb-0 mt-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        Name Min length
+                    </p>
+                    <p *ngIf="registerGroup.get('name')?.getError('maxlength')" class="mb-0 mt-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        Name Max length
+                    </p>
+                </div>
+                <!--^ email -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="email"><i class="fa-solid fa-envelope"></i></label>
+                    <input type="email" class="form-control border border-top-0 border-end-0 border-start-0 mt-1"
+                        formControlName="email" id="email" placeholder="Your Email" />
+                </div>
+                <div class="alert alert-danger error p-1 m-1 w-75 mx-auto text-center " *ngIf="
+             registerGroup.get('email')?.errors &&registerGroup.get('email')?.touched
+            ">
+                    <p *ngIf="registerGroup.get('email')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        email Required
+                    </p>
+
+                    <p *ngIf="registerGroup.get('email')?.getError('email')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+
+                        invalid email
+                    </p>
+                </div>
+                <!-- * pass -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="password"><i class="fa-solid fa-lock"></i></label>
+                    <input type="password" class="form-control border border-top-0 border-end-0 border-start-0 mt-1 "
+                        formControlName="password" id="password" placeholder="Your Password..." />
+                </div>
+                <div class="alert alert-danger error p-1 m-1 w-100 mx-auto text-center " *ngIf="
+              registerGroup.get('password')?.errors &&
+              registerGroup.get('password')?.touched
+            ">
+                    <p *ngIf="registerGroup.get('password')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        password Required
+                    </p>
+
+                    <p *ngIf="registerGroup.get('password')?.getError('pattern')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+
+                        password must start with upperCase then from 6 to 10
+                    </p>
+                </div>
+
+                <!-- PHONE -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="phone"><i class="fa-solid fa-phone"></i></label>
+                    <input type="tel" class="form-control border border-top-0 border-end-0 border-start-0 mt-1"
+                        formControlName="phone" id="phone" placeholder="Your Phone..." />
+                </div>
+                <div class="alert alert-danger p-1 m-1 w-75 mx-auto text-center error" *ngIf="
+              registerGroup.get('phone')?.errors && registerGroup.get('phone')?.touched
+            ">
+                    <p *ngIf="registerGroup.get('phone')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        phone Required
+                    </p>
+
+                    <p *ngIf="registerGroup.get('phone')?.getError('pattern')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+
+                        accept only egypt phone numbers
+                    </p>
+                </div>
+                <!-- age -->
+                <div class="mb-3 pb-2 d-flex justify-content-center  align-items-center gap-0">
+                    <label for="age"><i class="fa-solid fa-pen"></i></label>
+                    <input type="number" class="form-control border border-top-0 border-end-0 border-start-0 mt-1"
+                        formControlName="age" id="age" placeholder="Your Age.." />
+                </div>
+                <div class="alert alert-danger p-1 m-1 w-75 mx-auto text-center error" *ngIf="
+            registerGroup.get('age')?.errors && registerGroup.get('age')?.touched
+          ">
+                    <p *ngIf="registerGroup.get('age')?.getError('required')" class="m-0 my-1">
+                        <i class="fa-solid fa-triangle-exclamation ps-1"></i>
+                        age Required
+                    </p>
+
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    <button class="btn btn-danger" [disabled]="registerGroup.invalid">
+                        SIGN UP...
+
+                        <i class="fa fa-spinner fa-spin" *ngIf="load"></i>
+                    </button>
+                    <p class="my-3">Already Have an account?
+                        <a class="text-info" routerLink="/login">Signin</a>
+                    </p>
+                </div>
+                <p *ngIf="err" class="p-1 w-50 text-center mb-0 mx-auto alert alert-danger">
+                    {{err}}
+                </p>
+
+
+
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <img src="./assets/images/signup-image.jpg" alt="" class="imgHome">
+            </div>
+        </div>
+    </div>
+</section>

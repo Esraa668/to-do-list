@@ -1,0 +1,31 @@
+<mat-dialog-content>
+    <h2 class="fw-bold add">
+        <i class="fa-solid fa-list m-2"></i>Add your Task
+    </h2>
+
+    <form [formGroup]="noteForm" (ngSubmit)="handleForm(noteForm)" class="d-flex flex-column">
+        <mat-form-field appearance="fill">
+            <mat-label>Add Title:</mat-label>
+            <input matInput formControlName="title" />
+            <mat-error *ngIf="noteForm.get('title')?.hasError('required')">
+                Title is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="my-2">
+
+            <mat-label>Add Content:</mat-label>
+            <input matInput formControlName="content" />
+
+            <mat-error *ngIf="noteForm.get('content')?.hasError('required')">
+                Content is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-dialog-actions>
+            <button mat-button cdkFocusInitial [disabled]="noteForm.invalid" class="buttunOK">
+                {{ data._id ? 'Update..' : 'Ok..' }}
+            </button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>

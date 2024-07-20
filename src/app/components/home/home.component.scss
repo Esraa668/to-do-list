@@ -1,0 +1,67 @@
+.card-big-shadow {
+  max-width: 320px;
+  position: relative;
+}
+
+.card[data-radius="none"] {
+  border-radius: 0px;
+}
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  background-color: #ffffff;
+  color: #252422;
+
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 992px) {
+  .card-big-shadow {
+    width: 100%;
+    position: relative;
+  }
+}
+@media screen and (max-width: 992px) {
+  .notes-container {
+    height: 100% !important;
+  }
+}
+
+.card.card-just-text .content {
+  padding: 30px;
+  text-align: center;
+}
+.card .content {
+  padding: 20px 20px 10px 20px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap");
+body {
+  font-family: "Edu AU VIC WA NT Hand", cursive !important;
+}
+h4,
+.h4 {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.2em;
+}
+.card .description {
+  font-size: 16px;
+  color: #66615b;
+}
+.content-card {
+  padding-top: 30px;
+}
+
+.card[data-color="yellow"] {
+  background: #ffe28c;
+}
+
+.card[data-color="yellow"] .description {
+  color: #b25825;
+}
+.card[data-color="yellow"] .category {
+  color: #d88715;
+}

@@ -1,0 +1,75 @@
+<div class="notes-container g-0 m-0 ">
+    <nav class="navbar navbar-expand-md navbar-light sidenav-bar " #nav>
+        <div class="container  ">
+            <span class="d-flex gap-2 text-warning justify-content-center fs-2 align-items-center">
+                <p class="m-0 text-p">
+                    <i class="fa-regular fa-note-sticky iconTask "></i>
+                    Tasks
+                </p>
+            </span>
+            <button class="navbar-toggler d-lg-none nav-items" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon icon"></span>
+            </button>
+            <div class="collapse navbar-collapse  " id="collapsibleNavId">
+                <ul class="navbar-nav addButton mt-2 mt-lg-0 align-items-center">
+                    <li class="nav-item ms-2">
+                        <button [ngStyle]="{'backgroundColor':'#8f3039'}" class="text-white btn add " mat-raised-button
+                            (click)="openDialog()">Add</button>
+                    </li>
+
+
+
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2  align-items-center justify-content-between">
+
+
+                    <li class="nav-item d-flex  ">
+                        <input type="text" class="form-control" placeholder="search" [(ngModel)]="searchValue">
+                    </li>
+
+                    <li class="nav-link">
+                        <button (click)="signout()" class="  text-white">Logout..</button>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="col-lg-10 content-card mx-auto" *ngIf="notes.length > 0; else msg">
+        <div class="row justify-content-center p-3 m-0">
+            <div *ngFor="let note of notes |search:searchValue; let i = index" class="card-big-shadow col-md-3 col-lg-4"
+                id="note-{{note._id}}">
+                <div class="card card-just-text" data-background="color" data-color="yellow" data-radius="none">
+                    <div class="content">
+                        <h4 class="title textcontent d-flex justify-content-center align-items-center">
+                            <span [class.done]="note.done">{{note.title}}</span>
+                            <button type="button" class="buttonDone" #btn (click)="toggleDone(note, btn)"
+                                *ngIf="!note.done">
+                                <i class="fa-solid fa-check mt-1"></i>
+                            </button>
+                        </h4>
+                        <p class="description">{{note.content}} </p>
+                        <div class="d-flex justify-content-evenly gap-2">
+                            <button class="btn p-0" (click)="updateNote(note,i)">
+                                <i class="fa-solid fa-pen-to-square colorUpdate cursor-pointer"></i>
+                            </button>
+                            <button class="btn p-0" (click)="delete(note._id, i)">
+                                <i class="fa-solid fa-trash colorDelete  text-danger cursor-pointer"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #msg>
+        <div class="w-75 mx-auto py-2 m-4 task">
+            <h3 class=" fs-2 m-1 text-center text-warning "> Enter Your Tasks Now!...</h3>
+
+            <img src="./assets/images/no tasks.jpg" alt="" class="w-40 text-center mx-auto d-block imghome">
+        </div>
+    </ng-template>
+
+</div>
